@@ -1,0 +1,21 @@
+{% extends "admin/base.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="col-sm-12">
+  <a href='{% url "chitrakatha:image"%}'>
+<div class="upload-images">
+  <img src='{% static "img/image.png" %}' alt="Los Angeles">
+  <p class="upload-texts"> Images </p>
+</div>
+</a>
+<a href='{% url "chitrakatha:blog"%}'>
+<div class="upload-images">
+<img src='{% static "img/blog.jpg" %}' alt="Los Angeles">
+<p class="upload-texts"> Blog </p>
+</div>
+</a>
+
+</div>
+
+
+{% endblock %}

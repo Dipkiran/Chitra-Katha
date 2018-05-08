@@ -1,0 +1,85 @@
+{% extends "user/base.html" %}
+{% load staticfiles %}
+
+
+
+
+{% block content %}
+<style>
+#blog{
+  background-color: #fff;
+}
+
+.blogs-post{
+  border: 1px solid #717172;
+  margin-top: 4%;
+  background-color: white;
+  height: 300px;
+  border-radius: 25px;
+  width: 80%;
+  margin-left: 10%;
+  margin-bottom: 2%;
+}
+.blogs-text{
+  padding: 1% 1%;
+  width: 100%;
+
+}
+.blogs-detail{
+  padding: 0 7%;
+  font-size: 14px;
+  float: left;
+  width: 55%;
+}
+.blogs-title{
+  padding: 3% 7%;
+  font-size: 36px;
+  float: left;
+  width: 55%;
+}
+.blogs-text img{
+  float:right;
+  width: 40%;
+  border-radius: 25px;
+  height: 200px;
+  margin-top: 1.5%;
+  margin-right: 3%;
+
+}
+@media screen and (max-width:480px){
+    .blogs-text img{height: 100%;width: 90%; margin-left: 0%; margin-top: 1%; margin-bottom: 1%;}
+}
+@media screen and (max-width:480px){
+    .blogs-post{width: 95%;border: none; margin-left: -1%;}
+}
+@media screen and (max-width:480px){
+    .blogs-text{float: none; width: 100%;}
+}
+@media screen and (max-width:480px){
+    .blogs-detail{float: left; width: 100%;}
+}
+.blog-post{
+  margin-bottom: 2%;
+  margin-top: 1%;
+}
+</style>
+            {% for obj in object_list %}
+
+            <div class="col-sm-8 col-sm-offset-2" id="blog">
+              <div class="blogs-post">
+                <div class="blogs-text">
+                  <div class="blogs-title"> <strong>{{ obj.place|title }}</strong></div>
+                    <img src="/media/{{ obj.mainimage }}/" />
+                    <div class="blogs-detail">{{ obj.Description|linebreaks|truncatechars:100 }}<a href='{{ obj.get_url }}'> Read More </a></div>
+                  </div>
+                </div>
+              </div>
+
+            {% endfor %}
+
+
+{% endblock %}
+
+
+
+</div>

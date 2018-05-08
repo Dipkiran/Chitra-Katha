@@ -1,0 +1,43 @@
+
+{% extends "admin/base.html" %}
+{% load staticfiles %}
+{% block content %}
+<style>
+#id_image_caption{
+  width: 80%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-left: 5%;
+
+}
+#post_form{
+  font-size: 16px;
+}
+.captiontitle{
+  font-size: 16px;
+  margin-top: 2%;
+  text-align: center;
+}
+</style>
+<div class="images-details">
+  {% if instance.image %}
+         <img style="margin: 0 auto; padding: 0 auto" src='{{ instance.image.url }}' class="img-responsive"/>
+     {% endif %}
+     <div class="captiontitle">
+     {% for cap in object_list %}
+       {{ cap.image_caption }}
+     {% endfor %}
+   </div>
+       <form id="post_form" method="POST" action="" enctype="multipart/form-data">
+
+           {% csrf_token %}
+             {{ form.as_p }}
+
+
+
+           <input type="submit" name="submit" value="Submit" />
+       </form>
+
+
+</div>
+{% endblock %}

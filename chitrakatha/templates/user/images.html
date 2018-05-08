@@ -1,0 +1,24 @@
+{% extends "user/base.html" %}
+{% load staticfiles %}
+
+
+
+
+{% block content %}
+          <div class="places">
+          Click on Places:
+        </div>
+            {% for obj in object_list %}
+
+              <div class="list-images">
+                <a href='{{ obj.get_url }}'>
+                <div class="list-images-title"><b>{{ obj.place|title }}</b></div>
+                <div class="image-button">
+              <button class="list-images-click">View Images</button>
+            </div>
+            </a>
+            </div>
+            {% endfor %}
+
+
+{% endblock %}

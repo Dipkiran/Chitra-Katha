@@ -1,0 +1,49 @@
+{% extends "user/base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+{% for obj in object_list %}
+
+
+
+<div class="slideshow-container">
+
+    <div class="slides">
+      <div class="images">
+      <img src="/media/{{ obj.mainimage }}/" />
+    </div>
+      <div class="texts">
+        <div class="item-title">
+          <strong>{{ obj.place|title }}</strong>
+        </div>
+        <div class="item-description">
+          <p> {{ obj.Description|linebreaks|truncatechars:100 }}<a href='{{ obj.get_url }}'> Read More </a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  {% endfor %}
+
+
+
+
+<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+<a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+</div>
+<br><br>
+
+
+{% for img in image_list %}
+<div class="images-show">
+  <a href="{{ img.get_url }}">
+  <div class="image-div">
+    <img src="/media/{{ img.mainimage }}/" alt="Los Angeles" >
+    <div class="more-image">{{ img.place|title }} </div>
+  </div>
+  </a>
+</div>
+{% endfor %}
+
+{% endblock %}

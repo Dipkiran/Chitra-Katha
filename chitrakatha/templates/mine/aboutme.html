@@ -1,0 +1,29 @@
+
+{% extends "user/base.html" %}
+{% load staticfiles %}
+{% block content %}
+  <div class="about-contains">
+    <img src='{% static "img/chicago.jpg" %}' class="about-image">
+     <div class="aboutintro">Ankit Shrestha<br>
+    <i class="fa fa-map-marker"></i> Jwagal Kupondol<br>
+    <i class="fa fa-mobile"></i> 9841193789<br>
+  </div>
+    <div class="about-main">
+      <p class="aboutpara">I am an enthusiast full time freelance photographer, involve in photography field from past 2 years. My interests are
+      street photography and landscape.</p>
+      <p class="aboutmore">
+      <b>Education:</b> Bachelor in Industrial Engineering from Institute of Engineering, Tribhuwan University.<br><br>
+      <b>Experience:</b> Parttime Lecturer with a demonstrated history of working in the market research industry.<br><br>
+      <b>Skills:</b> Skilled in management, Leadership, Renewable Energy, Engineering and Strategic Planning.
+    </p>
+    </div>
+    <div class="about-follow">
+      <b>Follow Me on</b>:<br>
+      <div class="aboutlogo">
+        Facebook: <a href="#"><i class="fa fa-facebook-square" id="aboutfa"></i></a><br>
+        Twitter: <a href="#"><i class="fa fa-twitter" id="aboutfa"></i></a><br>
+        Instagram: <a href="#"><i class="fa fa-instagram" id="aboutfa"></i></a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

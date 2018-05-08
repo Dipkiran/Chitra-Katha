@@ -1,0 +1,23 @@
+
+{% extends "admin/base.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="col-sm-10 col-sm-offset-1" id="show-image">
+  <div class="show-image-title"> <b>{{ title | title }}</b></div><br>
+  <div class="show-image-desc"><p>{{ instance.content | linebreaks}}</p></div>
+  <div class="col-sm-12">
+    <div class="show-images">
+
+      {% for img in image_list %}
+      <a href='{% url "chitrakatha:imagedetail" id=img.id %}'>
+          <img src="/media/{{ img.image }}/" />
+          </a>
+          {{ img.id }}
+      {% endfor %}
+
+
+    </div>
+
+</div>
+</div>
+{% endblock %}

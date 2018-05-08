@@ -1,0 +1,37 @@
+{% extends "admin/base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+            {% for obj in object_list %}
+
+              <div class="list-images">
+                <a href='{{ obj.get_url }}'>
+                <div class="list-images-title"><b>{{ obj.place|title }}</b></div>
+                <div class="image-button">
+              <button class="list-images-click">View Images</button>
+            </div>
+            </a>
+            </div>
+            {% endfor %}
+
+
+            <div class="col-sm-12" id="blog">
+            {% for blog in blog_list %}
+
+
+                  <div class="ablogs-post">
+                      <div class="ablogs-text">
+                        <div class="ablogs-title"> <strong>{{ blog.place|title }}</strong></div>
+                        <img src="/media/{{ blog.mainimage }}/" />
+                        <div class="ablogs-detail">{{ blog.Description|linebreaks|truncatechars:100 }}<a href='{{ blog.get_url }}'> Read More </a></div>
+                      </div>
+
+                  </div>
+
+
+
+           {% endfor %}
+           </div>
+
+
+{% endblock %}

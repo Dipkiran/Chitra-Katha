@@ -1,0 +1,44 @@
+
+{% extends "admin/base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<style>
+  strong{
+    font-size: 28px;
+  }
+  .caption-title{
+    font-size: 16px;
+    margin-bottom: 1%;
+
+    margin-left: 5%;
+  }
+</style>
+<div class="col-sm-10 col-sm-offset-1" id="show-image">
+  <div class="show-image-title"> <b>{{ title | title }}</b></div><br>
+  <div class="show-image-desc"><p>{{ instance.content | linebreaks}}</p></div>
+  <div class="col-sm-12">
+    <div class="show-imagescaption">
+
+      {% for img in image_list %}
+      <a href='{% url "chitrakatha:addimagecaption" id=img.id %}'>
+          <img src="/media/{{ img.image }}/" />
+          </a>
+          <div class="caption-title">
+          {% for cap in object_list %}
+
+          {% if cap.id == img.id %}
+          {{ cap.image_caption }}
+          {% endif %}
+
+
+          {% endfor %}
+            </div>
+      {% endfor %}
+
+
+    </div>
+
+</div>
+</div>
+{% endblock %}

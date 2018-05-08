@@ -1,0 +1,29 @@
+{% extends "admin/base.html" %}
+{% load staticfiles %}
+{% block content %}
+<style>
+    textarea{
+      height: 350px;
+      width: 900px;
+    }
+    #id_place{
+      width: 20%;
+    }
+    form{
+      width: 80%;
+      margin-top: 2%;
+      margin-bottom: 4%;
+    }
+</style>
+<div class="col-md-12 col-md-offset-2">
+<form id="post_form" method="POST" action="" enctype="multipart/form-data">
+
+    {% csrf_token %}
+      {{ form1.as_p }}
+      {{ form2.as_p }}
+
+
+    <input type="submit" name="submit" value="Submit" />
+</form>
+</div>
+{% endblock %}

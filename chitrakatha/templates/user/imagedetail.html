@@ -1,0 +1,38 @@
+
+{% extends "user/base.html" %}
+{% load staticfiles %}
+{% block content %}
+<style>
+.captiontitle{
+  font-size: 16px;
+  margin-top: 2%;
+  text-align: center;
+}
+
+#id_Name{
+  width: 36%;
+}
+</style>
+<div class="images-details">
+  {% if instance.image %}
+         <img style="margin: 0 auto; padding: 0 auto" src='{{ instance.image.url }}' class="img-responsive"/>
+     {% endif %}
+     <div class="captiontitle">
+     {% for cap in object_list %}
+       {{ cap.image_caption }}
+     {% endfor %}
+     {{id}}
+   </div>
+     <div class="buyers-form">
+     <form id="post_form" method="POST" action="">
+
+         {% csrf_token %}
+           {{ form.as_p }}
+
+
+           <input type="submit" name="submit" value="Submit" />
+     </form>
+   </div>
+
+</div>
+{% endblock %}
