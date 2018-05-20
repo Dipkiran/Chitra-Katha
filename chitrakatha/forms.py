@@ -1,17 +1,25 @@
 from django import forms
 
-from .models import AddImage, Images, Buyers, Blog, Caption, ImageCaption, BlogImages
+from .models import *
 
 from django.contrib.auth.models import User
 
 class ImagePostForm(forms.ModelForm):
     place = forms.CharField(max_length=120)
-    content = forms.CharField(widget=forms.Textarea)
     mainimage = forms.FileField()
 
     class Meta:
         model = AddImage
-        fields = ('place','content','mainimage', )
+        fields = ('place','mainimage', )
+
+class MainImageForm(forms.ModelForm):
+    place = forms.CharField(max_length=120)
+    shortdescription = forms.CharField(max_length=80)
+    image = forms.FileField()
+
+    class Meta:
+        model = MainImage
+        fields = ('place','shortdescription','image', )
 
 
 class ImageForm(forms.ModelForm):

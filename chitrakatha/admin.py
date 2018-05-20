@@ -1,22 +1,25 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import AddImage
-from .models import Images
-from .models import BlogImages
-from .models import Blog
-from .models import Buyers
-from .models import Caption
-from .models import ImageCaption
+from .models import *
 #model admin options
 class PostModelAdmin(admin.ModelAdmin):
-    list_display = ["id","place","content","mainimage","published_Date",]
+    list_display = ["id","place","mainimage","published_Date",]
     #list_display_links = ["updated"]
 
 
     class Meta:
         model = AddImage
 admin.site.register(AddImage, PostModelAdmin)
+
+class MainImageModelAdmin(admin.ModelAdmin):
+    list_display = ["id","place","shortdescription","image","published_Date",]
+    #list_display_links = ["updated"]
+
+
+    class Meta:
+        model = MainImage
+admin.site.register(MainImage, MainImageModelAdmin)
 
 class ImageModelAdmin(admin.ModelAdmin):
     list_display = ["image","post","id",]

@@ -1,0 +1,86 @@
+{% extends "chitrakatha/base.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="col-sm-12" id="blog">
+  <div class="title-image">
+    <p>Image Album</p>
+  </div>
+{% for img in image_list %}
+<div class="images-show">
+
+  <div class="image-div">
+      <a href="{{ img.get_url }}">
+    <img src="/media/{{ img.mainimage }}/" alt="Los Angeles" >
+
+    <div class="more-image">{{ img.place|title }} </div>
+    </a>
+    <a href='{% url "chitrakatha:deleteimage" id=img.id %}'><button class="delete-button"> delete </button></a>
+  </div>
+
+
+</div>
+{% endfor %}
+</div>
+<div class="pagination">
+      <span class="step-links">
+
+          {% if image_list.has_previous %}
+              <a href="?{page_req_var}=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&laquo; first</a>
+              <a href="?{{page_req_var}}={{ image_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">previous</a>
+          {% endif %}
+
+          <span class="current">
+              Page {{ image_list.number }} of {{ image_list.paginator.num_pages }}.
+          </span>
+
+          {% if image_list.has_next %}
+              <a href="?{{page_req_var}}={{ image_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">next</a>
+              <a href="?{{page_req_var}}={{ image_list.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">last &raquo;</a>
+          {% endif %}
+      </span>
+  </div>
+
+
+  <div class="title-blog">
+    <p>Blog Post</p>
+  </div>
+            <div class="col-sm-12" id="blog">
+            {% for blog in object_list %}
+
+
+                  <div class="ablogs-post">
+                      <div class="ablogs-text">
+                        <div class="ablogs-title"> <strong>{{ blog.place|title }}</strong></div>
+                        <img src="/media/{{ blog.mainimage }}/" />
+                        <div class="ablogs-detail">{{ blog.Description|linebreaks|truncatechars:100 }}<a href='{{ blog.get_url }}'> Read More </a></div>
+                      </div>
+                      <a href='{% url "chitrakatha:deleteblog" id=blog.id %}'><button class="delete-button"> delete </button></a>
+                        <a href='{% url "chitrakatha:updateblog" id=blog.id %}'><button class="delete-button"> Update </button></a>
+
+                  </div>
+
+
+
+           {% endfor %}
+           </div>
+           <div class="pagination">
+                 <span class="step-links">
+
+                     {% if object_list.has_previous %}
+                         <a href="?{page_request_var}=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&laquo; first</a>
+                         <a href="?{{page_request_var}}={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">previous</a>
+                     {% endif %}
+
+                     <span class="current">
+                         Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+                     </span>
+
+                     {% if object_list.has_next %}
+                         <a href="?{{page_request_var}}={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">next</a>
+                         <a href="?{{page_request_var}}={{ object_list.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">last &raquo;</a>
+                     {% endif %}
+                 </span>
+             </div>
+
+
+{% endblock %}

@@ -76,7 +76,24 @@
               </div>
 
             {% endfor %}
+            <div class="pagination">
+                  <span class="step-links">
 
+                      {% if object_list.has_previous %}
+                          <a href="?{page_req_var}=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&laquo; first</a>
+                          <a href="?{{page_req_var}}={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">previous</a>
+                      {% endif %}
+
+                      <span class="current">
+                          Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+                      </span>
+
+                      {% if object_list.has_next %}
+                          <a href="?{{page_req_var}}={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">next</a>
+                          <a href="?{{page_req_var}}={{ object_list.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">last &raquo;</a>
+                      {% endif %}
+                  </span>
+              </div>
 
 {% endblock %}
 

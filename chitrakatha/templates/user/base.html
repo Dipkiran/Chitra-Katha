@@ -48,7 +48,7 @@
 					<li><a href="{% url 'chitrakatha:images' %}">Gallery</a></li>
 					<li><a href="{% url 'chitrakatha:aboutme' %}">About me</a></li>
 					{% if request.user.is_superuser or  request.user.is_staff %}
-					<li><a href="{% url 'chitrakatha:adminpage' %}">AdminPage</a></li>
+					<li><a href="{% url 'chitrakatha:mainpage' %}">AdminPage</a></li>
 			{% endif %}
 			</ul>
 

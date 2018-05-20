@@ -9,10 +9,17 @@ from datetime import timezone
 class User(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1,on_delete=models.CASCADE,)
 
+#mainimage
+class MainImage(models.Model):
+    place = models.CharField(max_length=120)
+    shortdescription = models.CharField(max_length=80)
+    updated = models.DateTimeField(auto_now=True, auto_now_add=False)
+    image = models.FileField()
+    published_Date = models.DateTimeField(auto_now=False, auto_now_add=True)
+
 #image table
 class AddImage(models.Model):
     place = models.CharField(max_length=120)
-    content = models.TextField()
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     mainimage = models.FileField()
     published_Date = models.DateTimeField(auto_now=False, auto_now_add=True)
@@ -48,7 +55,7 @@ class Buyers(models.Model):
     image_id = models.FileField()
 
     def get_absolute_url(self):
-        return reverse("chitrakatha:images")
+        return reverse("chitrakatha:thankyou")
 
 #blog table
 class Blog(models.Model):

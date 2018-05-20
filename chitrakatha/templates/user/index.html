@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% block content %}
 
-{% for obj in object_list %}
+{% for main in mainimage_list %}
 
 
 
@@ -10,15 +10,16 @@
 
     <div class="slides">
       <div class="images">
-      <img src="/media/{{ obj.mainimage }}/" />
+        <a href='{% url "chitrakatha:mainimagedetail" id=main.id %}'>
+      <img src="/media/{{ main.image }}/" />
+    </a>
     </div>
       <div class="texts">
         <div class="item-title">
-          <strong>{{ obj.place|title }}</strong>
+          <strong>{{ main.place|title }}</strong>
+          <small>{{ main.shortdescription }}<small>
         </div>
-        <div class="item-description">
-          <p> {{ obj.Description|linebreaks|truncatechars:100 }}<a href='{{ obj.get_url }}'> Read More </a></p>
-        </div>
+
       </div>
 
     </div>
@@ -31,19 +32,81 @@
 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
 <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
+</div><br><br>
+
+<div class="col-sm-12" id="blogs">
+<div class="title-blog">
+  <p>Blog Post</p>
 </div>
-<br><br>
+<div class="blogs">
+{% for obj in object_list %}
 
+<div class="blog-list">
+  <img src="/media/{{ obj.mainimage }}/" />
+    <div class="blog-list-text">
+    <strong>{{ obj.place|title }}</strong>
 
+    <p> {{ obj.Description|linebreaks|truncatechars:100 }}<a href='{{ obj.get_url }}'> Read More </a></p>
+  </div>
+</div>
+</div>
+<br>
+{% endfor %}
+
+<div class="pagination">
+      <span class="step-links">
+
+          {% if object_list.has_previous %}
+              <a href="?{page_req_var}=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&laquo; first</a>
+              <a href="?{{page_req_var}}={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">previous</a>
+          {% endif %}
+
+          <span class="current">
+              Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+          </span>
+
+          {% if object_list.has_next %}
+              <a href="?{{page_req_var}}={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">next</a>
+              <a href="?{{page_req_var}}={{ object_list.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">last &raquo;</a>
+          {% endif %}
+      </span>
+  </div>
+</div>
+<div class="col-sm-12" id="blogs">
+<div class="image">
+<div class="title-image">
+  <p>Image Album</p>
+</div>
 {% for img in image_list %}
 <div class="images-show">
   <a href="{{ img.get_url }}">
   <div class="image-div">
     <img src="/media/{{ img.mainimage }}/" alt="Los Angeles" >
+
     <div class="more-image">{{ img.place|title }} </div>
   </div>
   </a>
 </div>
 {% endfor %}
+</div>
+</div>
+<div class="pag">
+      <span class="step-links">
+
+          {% if image_list.has_previous %}
+              <a href="?{page_request_var}=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&laquo; first</a>
+              <a href="?{{page_request_var}}={{ image_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">previous</a>
+          {% endif %}
+
+          <span class="current">
+              Page {{ image_list.number }} of {{ image_list.paginator.num_pages }}.
+          </span>
+
+          {% if image_list.has_next %}
+              <a href="?{{page_request_var}}={{ image_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">next</a>
+              <a href="?{{page_request_var}}={{ image_list.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">last &raquo;</a>
+          {% endif %}
+      </span>
+  </div>
 
 {% endblock %}
